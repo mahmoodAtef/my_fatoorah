@@ -152,8 +152,8 @@ class __WebViewPageState extends State<_WebViewPage>
           child: InAppWebView(
             initialUrlRequest: URLRequest(url: WebUri(widget.uri.toString())),
             initialSettings: InAppWebViewSettings(
-              javaScriptEnabled: true,
-              javaScriptCanOpenWindowsAutomatically: true,
+              javaScriptEnabled: false,
+              javaScriptCanOpenWindowsAutomatically: false,
               applePayAPIEnabled: true,
             ),
             onWebViewCreated: (InAppWebViewController controller) {
