@@ -96,13 +96,9 @@ class __WebViewPageState extends State<_WebViewPage>
   void onBack() {}
   @override
   Widget build(BuildContext context) {
-    return WillPopScope(
-      onWillPop: popResult,
-      child: Scaffold(
-        appBar:
-            widget.getAppBar != null ? widget.getAppBar!(context) : AppBar(),
-        body: _stack(context),
-      ),
+    return Scaffold(
+      appBar: widget.getAppBar != null ? widget.getAppBar!(context) : AppBar(),
+      body: _stack(context),
     );
   }
 
