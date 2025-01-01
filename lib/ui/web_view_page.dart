@@ -151,17 +151,6 @@ class __WebViewPageState extends State<_WebViewPage>
         ),
         Expanded(
           child: InAppWebView(
-            shouldInterceptAjaxRequest: (controller, request) async {
-              debugPrint(
-                  "----------------------------------------------------------");
-              debugPrint("method : ${request.method}");
-              debugPrint("response : ${request.response}");
-              debugPrint("data : ${request.data}");
-              debugPrint("webUri : ${request.url}");
-              debugPrint(
-                  "----------------------------------------------------------");
-              return request;
-            },
             initialUrlRequest: URLRequest(url: WebUri(widget.uri.toString())),
             initialSettings: InAppWebViewSettings(
               javaScriptEnabled: true,
@@ -191,32 +180,6 @@ class __WebViewPageState extends State<_WebViewPage>
             },
             onReceivedHttpError: (controller, request, error) {
               setError(request.url, error.reasonPhrase ?? '');
-            },
-            onLoadStop: (InAppWebViewController controller, Uri? uri) {
-              setStop(uri);
-            },
-            onProgressChanged:
-                (InAppWebViewController controller, int progress) {
-              setProgress(progress);
-            },
-            onAjaxProgress: (InAppWebViewController controller, request) async {
-              var e = request.event;
-              if (e != null) {
-                var p = (e.loaded! ~/ e.total!) * 100;
-                print(p);
-                setProgress(p);
-              }
-              return request.action!;
-            },
-            onAjaxReadyStateChange:
-                (InAppWebViewController controller, request) async {
-              print(request.event);
-
-              if (request.readyState == AjaxRequestReadyState.OPENED)
-                setStart(request.url);
-              else
-                setStop(request.url);
-              return request.action;
             },
           ),
         ),

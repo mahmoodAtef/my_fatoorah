@@ -4,8 +4,7 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="003171e3-23e8-4621-80d0-8df7a29a2a75" name="Default Changelist" comment="add js handler">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    <list default="true" id="003171e3-23e8-4621-80d0-8df7a29a2a75" name="Default Changelist" comment="some prints">
       <change beforePath="$PROJECT_DIR$/lib/ui/web_view_page.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/ui/web_view_page.dart" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -188,7 +187,15 @@
       <option name="project" value="LOCAL" />
       <updated>1735714467697</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="some prints">
+      <option name="closed" value="true" />
+      <created>1735715251494</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1735715251494</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -224,7 +231,8 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="disabled js" />
     <MESSAGE value="add js handler" />
-    <option name="LAST_COMMIT_MESSAGE" value="add js handler" />
+    <MESSAGE value="some prints" />
+    <option name="LAST_COMMIT_MESSAGE" value="some prints" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/android/src/main/java/com/dawood/my_fatoorah/PaymentActivity.kt" />
