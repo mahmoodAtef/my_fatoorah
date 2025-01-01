@@ -27,6 +27,33 @@ class __WebViewPageState extends State<_WebViewPage>
   late InAppWebViewController controller;
   double? progress = 0;
   PaymentResponse response = PaymentResponse(PaymentStatus.None);
+  Future<AjaxRequest?> handleAjaxRequest(AjaxRequest request) async {
+    try {
+      if (request.url == null) return request;
+
+      // Add necessary headers for MyFatoorah
+
+      // Handle session initialization
+      if (request.url.toString().contains('initiate_authentication')) {
+        if (request.data != null) {
+          final Map<String, dynamic> data = (request.data is String)
+              ? jsonDecode(request.data)
+              : request.data;
+
+          // Ensure session data exists
+          if (data['session'] == null) {
+            data['session'] = {'id': ''};
+          }
+        }
+      }
+
+      return request;
+    } catch (e) {
+      print('Error handling AJAX request: $e');
+      return request;
+    }
+  }
+
   Future<bool> popResult() async {
     if (response.status == PaymentStatus.None && await controller.canGoBack()) {
       controller.goBack();
@@ -150,14 +177,26 @@ class __WebViewPageState extends State<_WebViewPage>
         ),
         Expanded(
           child: InAppWebView(
-            initialUrlRequest: URLRequest(url: WebUri(widget.uri.toString())),
+            initialUrlRequest: URLRequest(
+              url: WebUri(widget.uri.toString()),
+            ),
             initialSettings: InAppWebViewSettings(
-              javaScriptEnabled: false,
-              javaScriptCanOpenWindowsAutomatically: false,
+              javaScriptEnabled: true,
+              javaScriptCanOpenWindowsAutomatically: true,
               applePayAPIEnabled: true,
             ),
             onWebViewCreated: (InAppWebViewController controller) {
               this.controller = controller;
+              this.controller.addJavaScriptHandler(
+                  handlerName: "mySum",
+                  callback: (args) {
+                    // Here you receive all the arguments from the JavaScript side
+                    // that is a List<dynamic>
+                    print("From the JavaScript side:");
+                    print(args);
+                    return args.reduce((curr, next) => curr + next);
+                  });
+              ;
             },
             onLoadStart: (InAppWebViewController controller, Uri? uri) {
               setStart(uri);
